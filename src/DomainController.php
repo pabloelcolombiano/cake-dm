@@ -69,24 +69,27 @@ class DomainController
     public function setViewPaths()
     {
         $layer = $this->getLayer();
+
+        $templatePaths = Configure::read('App.paths.templates', []);
+        $baseAppPath = 'Domain' . DS . Configure::read('App.namespace', 'App');
+
+        array_unshift($templatePaths, APP . $baseAppPath . DS . 'Template' . DS);
+
         if ($layer) {
+            array_unshift($templatePaths, APP . $layer . DS . 'Template' . DS);
+        }
 
-            $templatePaths = Configure::read('App.paths.templates', []);
-            $baseAppPath = 'Domain' . DS . Configure::read('App.namespace', 'App');
-
-            array_unshift($templatePaths, APP . $baseAppPath . DS . 'Template' . DS);
-            array_unshift($templatePaths,APP . $layer . DS . 'Template' . DS);
-
-            if ($this->getController()->getPlugin()) {
-                array_unshift($templatePaths, $this->getPluginFolder() . $baseAppPath . DS . 'Template' . DS);
+        if ($this->getController()->getPlugin()) {
+            array_unshift($templatePaths, $this->getPluginFolder() . $baseAppPath . DS . 'Template' . DS);
+            if ($layer) {
                 array_unshift($templatePaths, $this->getPluginFolder() . $layer . DS . 'Template' . DS);
             }
-
-            Configure::write(
-                'App.paths.templates',
-                $templatePaths
-            );
         }
+
+        Configure::write(
+            'App.paths.templates',
+            $templatePaths
+        );
     }
 
     /**

@@ -9,7 +9,7 @@ use CakeDomainManager\DomainController;
 use CakeDomainManager\DomainView;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
-class DomainControllerTest extends BaseTestCase
+class DomainViewTest extends BaseTestCase
 {
     /**
      * @var DomainView
