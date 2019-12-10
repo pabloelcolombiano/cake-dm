@@ -5,13 +5,13 @@ A domain manager for CakePHP applications.
 
 As your CakePHP grows, the respective size of your Controller, Model and Template folders increases.
 
-Your src/Template/Element folder has probably become a mess too, if you haven't split it in several sub-folders.
+Your *src/Template/Element* folder has probably become a mess too, if you haven't split it in several sub-folders.
 
-New joiners wonder where to start, and just as you, which models relate to another. 
+New joiners wonder where to start and, just as you, do not grasp which models relate to another. 
 
-An alternative would be to split everything in plugins. But this might not be what you expect from plugins. You would end up with a quantity of plugins added to the *real* plugins, and a deserted *src* folder. 
+An alternative would be to split everything into plugins. But this might not be what you expect from plugins. You would end up with a quantity of plugins added to the *real* plugins, and a deserted *src* folder. 
 
-Sub-folders: this is the approach proposed by cake-dm. With domain separation in mind, the package proposes to split your MVC structure into domains.
+Sub-folders! this is the approach proposed by cake-dm. With domain separation in mind, the package proposes to split your MVC structure into domains. And sub-domains.
 
 ## Installation
 
