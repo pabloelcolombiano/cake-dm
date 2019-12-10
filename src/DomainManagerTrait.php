@@ -12,7 +12,7 @@ trait DomainManagerTrait
 
     public $masterClass;
 
-    public function getLayer()
+    public function getLayer() : string
     {
         $reflector = new \ReflectionClass($this->masterClass);
 
@@ -33,7 +33,7 @@ trait DomainManagerTrait
                 $fileName
             );
         } else {
-            return null;
+            return '';
         }
 
         $arr = explode(DS . $this->getType() . DS, $fileName);
@@ -41,7 +41,7 @@ trait DomainManagerTrait
         if (count($arr) === 2) {
             $layer = $arr[0];
         } else {
-            return null;
+            return '';
         }
 
         return $layer;

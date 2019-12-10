@@ -38,17 +38,17 @@ class DomainController
 
         array_unshift($templatePaths, APP . $baseAppPath . DS . 'Template' . DS);
 
-        if ($layer) {
+        if (!empty($layer)) {
             array_unshift($templatePaths, APP . $layer . DS . 'Template' . DS);
         }
 
         if ($this->masterClass->getPlugin()) {
             array_unshift($templatePaths, $this->getPluginFolder() . 'Domain' . DS . 'Plugin' . DS . 'Template' . DS);
-            if ($layer) {
+            if (!empty($layer)) {
                 array_unshift($templatePaths, $this->getPluginFolder() . $layer . DS . 'Template' . DS);
             }
         }
- 
+
         Configure::write(
             'App.paths.templates',
             $templatePaths

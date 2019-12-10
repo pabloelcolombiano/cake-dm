@@ -52,6 +52,8 @@ class DomainView extends View
                 $plugin = $cast[0];
                 $template = $cast[1];
                 $name = $this->rewind(true) . 'plugins' . DS . $plugin . DS . 'src' . DS . "Domain" . DS . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
+            } elseif ($this->masterClass->getPlugin()) {
+                $name = $this->rewind(true) . 'src' . DS . "Domain" . DS . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
             } else {
                 $name = $this->rewind() . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
             }
@@ -65,9 +67,16 @@ class DomainView extends View
         return Configure::readOrFail('DomainManager.domain');
     }
 
-    private function rewind(bool $plugin = false)
+    private function rewind(bool $toRoot = false)
     {
-        $n = count(explode('/', $this->getControllerDomain())) + $plugin * 2 + 1;
+        $n = count(explode('/', $this->getControllerDomain())) + 1;
+        if ($toRoot) {
+            $n += 2;
+        }
+        if ($this->masterClass->getPlugin()) {
+            $n += 2;
+        }
+
         $res = '';
         for ($i = 0; $i < $n; $i++) {
             $res .=  ".." . DS;
