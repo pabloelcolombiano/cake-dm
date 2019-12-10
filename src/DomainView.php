@@ -5,9 +5,6 @@ namespace CakeDomainManager;
 
 
 use Cake\Core\Configure;
-use Cake\Event\EventManager;
-use Cake\Http\Response;
-use Cake\Http\ServerRequest;
 use Cake\View\View;
 
 /**
@@ -24,6 +21,10 @@ class DomainView extends View
      */
     private $view;
 
+    /**
+     * @param View $view
+     * @return static
+     */
     public static function init(View $view)
     {
         $domainViewManager = new static($view->getRequest(), $view->getResponse(), $view->getEventManager());
@@ -33,6 +34,29 @@ class DomainView extends View
         return $domainViewManager;
     }
 
+    /**
+     * To insert in AppView.php or any View that uses the
+     * CakePHP Domain Manager. This method overwrites the
+     * way Cake loads the elements.
+     *
+     * Examples:
+     *
+     * $this->element('logged_in_user@User'):
+     *      will load the element logged_in_user.ctp
+     *      located in src/Domain/User/Template/Element/logged_in_user
+     *
+     * $this->element('seat_description@Planes/Seats'):
+     *      will load the element seat_description.ctp
+     *      located in src/Domain/Planes/Seats/Template/Element/seat_description
+     *
+     * $this->element('Bookings.invoice_description@Invoices'):
+     *      will load the element invoice_description.ctp
+     *      located in plugins/Bookings/src/Domain/Invoices/Template/Element/invoice_description
+     *
+     * @param string $name
+     * @param bool $pluginCheck
+     * @return false|string
+     */
     protected function _getElementFileName($name, $pluginCheck = true)
     {
         return parent::_getElementFileName(
@@ -41,7 +65,11 @@ class DomainView extends View
         );
     }
 
-    public function extractElementName(string $name) : string
+    /**
+     * @param string $name
+     * @return string
+     */
+    public function extractElementName(string $name): string
     {
         $cast = explode('@', $name);
         if (count($cast) === 2) {
@@ -62,14 +90,14 @@ class DomainView extends View
         return $name;
     }
 
-    public function getControllerDomain() : string
-    {
-        return Configure::readOrFail('DomainManager.domain');
-    }
-
+    /**
+     * Calculates how many folders to rewind to catch the correct element
+     * @param bool $toRoot
+     * @return string
+     */
     private function rewind(bool $toRoot = false)
     {
-        $n = count(explode('/', $this->getControllerDomain())) + 1;
+        $n = count(explode('/', $this->getControllerDomainLayer())) + 1;
         if ($toRoot) {
             $n += 2;
         }
@@ -79,9 +107,21 @@ class DomainView extends View
 
         $res = '';
         for ($i = 0; $i < $n; $i++) {
-            $res .=  ".." . DS;
+            $res .= ".." . DS;
         }
 
         return $res;
+    }
+
+    /**
+     * Reads in Configure the domain layer from which the controller
+     * was initialy called. Views are not necessarily in the same domain layer
+     * but templates and controllers should
+     *
+     * @return string
+     */
+    public function getControllerDomainLayer(): string
+    {
+        return Configure::readOrFail('DomainManager.controller_domain');
     }
 }

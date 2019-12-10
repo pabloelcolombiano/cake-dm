@@ -2,10 +2,8 @@
 namespace CakeDomainManager\Test;
 
 
-use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\View\View;
-use CakeDomainManager\DomainController;
 use CakeDomainManager\DomainView;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
@@ -20,7 +18,7 @@ class DomainViewTest extends BaseTestCase
     {
         $view = $this->createMock(View::class);
         $this->domainView = DomainView::init($view);
-        Configure::write('DomainManager.domain', 'Domain/App');
+        Configure::write('DomainManager.controller_domain', 'Domain/App');
     }
 
     public function testExtractElementNameWithOneLevelLayer()
@@ -65,7 +63,9 @@ class DomainViewTest extends BaseTestCase
 
     public function testExtractElementNameFromPluginWithinSublayer()
     {
-        Configure::write('DomainManager.domain', 'Domain/Layer/Sublayer');
+
+        Configure::write('DomainManager.controller_domain', 'Domain/Layer/Sublayer');
+
         $elementName = 'TestPlugin.element@TestPluginLayer/TestPluginSublayer';
         $expectedElementName = '../../../../../../plugins/TestPlugin/src/Domain/TestPluginLayer/TestPluginSublayer/Template/Element/element';
 

@@ -26,7 +26,7 @@ class DomainControllerTest extends BaseTestCase
     {
         $expectedLayer = 'Domain' . DS . 'TestDomain';
         $fileName = APP . $expectedLayer . DS . 'Controller' . DS . 'TestController.php';
-        $layer = $this->domainController->extractLayerFromFileName($fileName);
+        $layer = $this->domainController->extractDomainLayerFromFileName($fileName);
 
         $this->assertEquals($expectedLayer, $layer);
     }
@@ -35,7 +35,7 @@ class DomainControllerTest extends BaseTestCase
     {
         $expectedLayer = 'Domain' . DS . 'TestDomain' . DS . 'TestSubDomain';
         $fileName = APP . $expectedLayer . DS . 'Controller' . DS . 'TestController.php';
-        $layer = $this->domainController->extractLayerFromFileName($fileName);
+        $layer = $this->domainController->extractDomainLayerFromFileName($fileName);
 
         $this->assertEquals($expectedLayer, $layer);
     }
@@ -44,7 +44,7 @@ class DomainControllerTest extends BaseTestCase
     {
         $expectedLayer = 'Domain' . DS . 'TestDomain';
         $fileName = APP . $expectedLayer . DS . 'Controlle' . DS . 'TestController.php';
-        $layer = $this->domainController->extractLayerFromFileName($fileName);
+        $layer = $this->domainController->extractDomainLayerFromFileName($fileName);
 
         $this->assertEquals(null, $layer);
     }

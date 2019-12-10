@@ -16,6 +16,10 @@ class DomainController
 {
     use DomainManagerTrait;
 
+    /**
+     * DomainController constructor.
+     * @param Controller $controller
+     */
     public function __construct(Controller $controller)
     {
         $this->masterClass = $controller;
@@ -23,14 +27,34 @@ class DomainController
         $this->defineControllerDomain();
     }
 
-    public static function init(Controller $controller)
+    /**
+     * In order to communicate to the DomainView in which domain layer
+     * the request was called, the actual domain layer is written in
+     * Configure.
+     */
+    public function defineControllerDomain()
     {
-         return new static($controller);
+        Configure::write('DomainManager.controller_domain', $this->getDomainLayer());
     }
 
+    /**
+     * @param Controller $controller
+     * @return static
+     */
+    public static function init(Controller $controller)
+    {
+        return new static($controller);
+    }
+
+    /**
+     * Check if the current controller is within a domain layer
+     * If it is the case, the App and the domain layers are added
+     * to the tmplate paths
+     * If in a plugin, the corresponding paths are also added
+     */
     public function setViewPaths()
     {
-        $layer = $this->getLayer();
+        $layer = $this->getDomainLayer();
 
         $templatePaths = Configure::read('App.paths.templates', []);
 
@@ -49,14 +73,6 @@ class DomainController
             }
         }
 
-        Configure::write(
-            'App.paths.templates',
-            $templatePaths
-        );
-    }
-
-    public function defineControllerDomain()
-    {
-        Configure::write('DomainManager.domain', $this->getLayer());
+        Configure::write('App.paths.templates', $templatePaths);
     }
 }
