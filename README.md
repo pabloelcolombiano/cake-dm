@@ -95,8 +95,7 @@ Cake-dm makes it possible to organize your code as follows, with domains marked 
                 - AppView.php               
             - Application.php        
         -> Invoicing
-            - Controller
-                - AppController.php
+            - Controller              
                 - DiscountsController.php
                 - TicketsController.php
             - Model
