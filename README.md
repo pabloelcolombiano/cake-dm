@@ -65,7 +65,7 @@ Assuming the following minimalistic structure for a flight company.
         - AppView.php
 ```
 ### With cake-dm
-Cake-dm makes it possible to organize your code as follows, with domain marked by arrows:
+Cake-dm makes it possible to organize your code as follows, with domains marked by arrows:
 ```
 - src
     - Console
@@ -143,7 +143,7 @@ Note that:
  - It is possible to split your domains in sub-domains.
  - Plugin structures can be split in the same manner. You should then replace the *App* domain by a *Plugin* domain.
  - The namespaces do not change. It is therefore forbidden to have two controllers with the same name in different domains.
- - the Cells, the Views and the Helpers can be distributed along domain layers too, just as the components. Behaviors too, but I cannot think of an example where this would be relevant. 
+ - The Cells, the Views and the Helpers can be distributed along domain layers too, just as the components. Behaviors too, but I cannot think of an example where this would be relevant. 
  
 ## Settings
 
@@ -174,7 +174,7 @@ after any structural change.
 
 You may also have to refresh your cached routes.
 
-The same applies when introducing doamin layers in your plugins.
+The same applies when introducing domain layers in your plugins.
 
 ### Controller
 
@@ -198,7 +198,7 @@ class AppController extends Controller
     {
         ...
         
-        DomainController::init($this)->setViewPaths();
+        DomainController::init($this)->setTemplatePaths();
     }
 
     ...
@@ -240,7 +240,7 @@ class AppView extends View
 
 ## Usage
 
-Whith the settings done you can call elements of the same layer just as before:
+With the settings done you can call elements of the same layer just as before:
 ```
 Request: /users/view/1
 
@@ -273,10 +273,14 @@ The notation:
 ```
 <?= $this->element('../Users', compact('users)) ?>
 ```
-is no longer supported, or at least it can react impredictably. Instead, organize you structure in a manner, where all reusable templates are located in an Element. All use the magical *@* notation to call elements from other layers.
+is no longer supported, or at least it can react impredictably. Instead, organize you structure in a manner, where all reusable templates are located in a domain layers's Element folder. All use the magical *@* notation to call elements from other layers.
 
+
+## Credits
+Juan Pablo Ramirez
+
+[webrider.de](https://webrider.de)
 
 ## License
-[webrider.de](https://webrider.de)
 
 [MIT](https://choosealicense.com/licenses/mit/)

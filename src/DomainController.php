@@ -52,7 +52,7 @@ class DomainController
      * to the tmplate paths
      * If in a plugin, the corresponding paths are also added
      */
-    public function setViewPaths()
+    public function setTemplatePaths()
     {
         $layer = $this->getDomainLayer();
 
