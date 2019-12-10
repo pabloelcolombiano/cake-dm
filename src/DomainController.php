@@ -7,21 +7,20 @@ namespace CakeDomainManager;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 
+/**
+ * DomainController
+ *
+ * @property Controller $masterClass
+ */
 class DomainController
 {
-    /**
-     * @var Controller
-     */
-    private $controller;
-
-    /**
-     * @var string
-     */
-    private $rootFolder;
+    use DomainManagerTrait;
 
     public function __construct(Controller $controller)
     {
-        $this->defineController($controller);
+        $this->masterClass = $controller;
+        $this->defineType('Controller');
+        $this->defineControllerDomain();
     }
 
     public static function init(Controller $controller)
@@ -29,48 +28,12 @@ class DomainController
          return new static($controller);
     }
 
-    public function getLayer()
-    {
-        $reflector = new \ReflectionClass($this->getController());
-
-        return $this->extractLayerFromFileName(
-            $reflector->getFileName(),
-            $this->getController()->getPlugin()
-        );
-    }
-
-    public function extractLayerFromFileName(string $fileName, string $plugin = null)
-    {
-        $srcPath = $plugin ? $this->getPluginFolder() : APP;
-
-        if (strpos($fileName, $srcPath) !== false) {
-            $fileName = str_replace(
-                $srcPath ,
-                '',
-                $fileName
-            );
-        } else {
-            return null;
-        }
-
-        if (strpos($fileName, DS . 'Controller' . DS . $this->getController()->getName() . 'Controller.php') !== false) {
-            $layer = str_replace(
-                DS . 'Controller' . DS . $this->getController()->getName() . 'Controller.php' ,
-                '',
-                $fileName
-            );
-        } else {
-            return null;
-        }
-
-        return $layer;
-    }
-
     public function setViewPaths()
     {
         $layer = $this->getLayer();
 
         $templatePaths = Configure::read('App.paths.templates', []);
+
         $baseAppPath = 'Domain' . DS . Configure::read('App.namespace', 'App');
 
         array_unshift($templatePaths, APP . $baseAppPath . DS . 'Template' . DS);
@@ -79,37 +42,21 @@ class DomainController
             array_unshift($templatePaths, APP . $layer . DS . 'Template' . DS);
         }
 
-        if ($this->getController()->getPlugin()) {
-            array_unshift($templatePaths, $this->getPluginFolder() . $baseAppPath . DS . 'Template' . DS);
+        if ($this->masterClass->getPlugin()) {
+            array_unshift($templatePaths, $this->getPluginFolder() . 'Domain' . DS . 'Plugin' . DS . 'Template' . DS);
             if ($layer) {
                 array_unshift($templatePaths, $this->getPluginFolder() . $layer . DS . 'Template' . DS);
             }
         }
-
+ 
         Configure::write(
             'App.paths.templates',
             $templatePaths
         );
     }
 
-    /**
-     * @return mixed
-     */
-    public function getController() : Controller
+    public function defineControllerDomain()
     {
-        return $this->controller;
-    }
-
-    /**
-     * @param mixed $controller
-     */
-    public function defineController($controller)
-    {
-        $this->controller = $controller;
-    }
-
-    public function getPluginFolder() : string
-    {
-        return ROOT . DS . 'plugins'. DS . $this->getController()->getPlugin() . DS . 'src' . DS;
+        Configure::write('DomainManager.domain', $this->getLayer());
     }
 }

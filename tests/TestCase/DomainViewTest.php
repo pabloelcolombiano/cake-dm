@@ -20,6 +20,7 @@ class DomainViewTest extends BaseTestCase
     {
         $view = $this->createMock(View::class);
         $this->domainView = DomainView::init($view);
+        Configure::write('DomainManager.domain', 'Domain/App');
     }
 
     public function testExtractElementNameWithOneLevelLayer()
@@ -34,8 +35,8 @@ class DomainViewTest extends BaseTestCase
 
     public function testExtractElementNameWithTwoLevelsLayer()
     {
-        $elementName = 'element@TestLayer/TestSublayer';
-        $expectedElementName = '../../../TestLayer/TestSublayer/Template/Element/element';
+        $elementName = 'element@../TestLayer/TestSublayer';
+        $expectedElementName = '../../../../TestLayer/TestSublayer/Template/Element/element';
 
         $parsedElementName = $this->domainView->extractElementName($elementName);
 
@@ -46,6 +47,27 @@ class DomainViewTest extends BaseTestCase
     {
         $elementName = 'element';
         $expectedElementName = 'element';
+
+        $parsedElementName = $this->domainView->extractElementName($elementName);
+
+        $this->assertEquals($expectedElementName, $parsedElementName);
+    }
+
+    public function testExtractElementNameFromPlugin()
+    {
+        $elementName = 'TestPlugin.element@TestPluginLayer';
+        $expectedElementName = '../../../../../plugins/TestPlugin/src/Domain/TestPluginLayer/Template/Element/element';
+
+        $parsedElementName = $this->domainView->extractElementName($elementName);
+
+        $this->assertEquals($expectedElementName, $parsedElementName);
+    }
+
+    public function testExtractElementNameFromPluginWithinSublayer()
+    {
+        Configure::write('DomainManager.domain', 'Domain/Layer/Sublayer');
+        $elementName = 'TestPlugin.element@TestPluginLayer/TestPluginSublayer';
+        $expectedElementName = '../../../../../../plugins/TestPlugin/src/Domain/TestPluginLayer/TestPluginSublayer/Template/Element/element';
 
         $parsedElementName = $this->domainView->extractElementName($elementName);
 
