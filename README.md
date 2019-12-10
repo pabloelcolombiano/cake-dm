@@ -153,7 +153,7 @@ The structure is managed by three components.
 
 ### Composer
 
-In order to have Cake following the paths without having the namespaces changes, you must add the following in your composer.json file:
+In order to have Cake following the paths without changing the namespaces and intruding in the middleware, you must modify the following in your composer.json file:
 ```bash
 "autoload": {
     "psr-4": {
@@ -166,15 +166,16 @@ In order to have Cake following the paths without having the namespaces changes,
             "src/Domain/Staff",
             "src/Domain/User"
         ],
+        ...
     }
 },
 ```
 
-and run
+Run
 ``` composer dump-autoload ```
 after any structural change.
 
-You may also have to refresh your cached routes.
+You may also have to refresh your cached routes as well in *tmp/cache*.
 
 The same applies when introducing domain layers in your plugins.
 
