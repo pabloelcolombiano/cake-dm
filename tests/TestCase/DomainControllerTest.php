@@ -3,7 +3,6 @@ namespace CakeDomainManager\Test;
 
 
 use Cake\Controller\Controller;
-use Cake\Core\Configure;
 use CakeDomainManager\DomainController;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
