@@ -5,7 +5,7 @@ A domain manager for CakePHP applications.
 
 As your CakePHP grows, the respective size of your Controller, Model and Template folders increases.
 
-Your src/Template/Element folder has probably become a mess too, if you haven't split in several sub-folders.
+Your src/Template/Element folder has probably become a mess too, if you haven't split it in several sub-folders.
 
 An alternative would be to split everything in plugins. But this might not be what you expect from plugins. 
 
