@@ -7,7 +7,9 @@ As your CakePHP grows, the respective size of your Controller, Model and Templat
 
 Your src/Template/Element folder has probably become a mess too, if you haven't split it in several sub-folders.
 
-An alternative would be to split everything in plugins. But this might not be what you expect from plugins. 
+New joiners wonder where to start, and just as you, which models relate to another. 
+
+An alternative would be to split everything in plugins. But this might not be what you expect from plugins. You would end up with a quantity of plugins added to the *real* plugins, and a deserted *src* folder. 
 
 Sub-folders: this is the approach proposed by cake-dm. With domain separation in mind, the package proposes to split your MVC structure into domains.
 
@@ -83,7 +85,6 @@ Cake-dm makes it possible to organize your code as follows, with domains marked 
                 - AppController.php
                 - PagesController.php
              - Model
-                empty
              - Template
                  - Element
                      - company_logo.ctp
@@ -134,16 +135,17 @@ Cake-dm makes it possible to organize your code as follows, with domains marked 
                 - Users
                 - UserProfile  
 ```
-The immediate advantage is that:
- - The domains of your code can be clearly assigned to different teams.
- - The admin layout (in this example) is different than the others, and this can easily be read from the structure.
+The advantage is that:
+ - The structure of your app becomes clearer. 
+ - The different domains of your code can be clearly assigned to different developers or teams.
+ - Template paths pile up. For example here, the layout of all the templates within the domain Admin is different than the others. This can easily be read from the structure.
  - Elements and Components are spread through the domains according to their relevance.
 
 Note that:
- - It is possible to split your domains in sub-domains.
+ - It is possible to split your domains in sub-domains, for example by creating a folder *src/Domain/Staff/Internal* and a folder *src/Domain/Staff/External*. In that case, no MVC folders should be located in the folder *src/Domain/Staff*
  - Plugin structures can be split in the same manner. You should then replace the *App* domain by a *Plugin* domain.
- - The namespaces do not change. It is therefore forbidden to have two controllers with the same name in different domains.
- - The Cells, the Views and the Helpers can be distributed along domain layers too, just as the components. Behaviors too, but I cannot think of an example where this would be relevant. 
+ - Namespaces do not change. It is therefore forbidden to have two controllers with the same name in different domains.
+ - Cells, Views and Helpers can be distributed along domain layers too, just as the components. Behaviors too. 
  
 ## Settings
 
