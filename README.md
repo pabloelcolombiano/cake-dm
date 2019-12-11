@@ -13,6 +13,10 @@ An alternative would be to split everything into plugins. But this might not be 
 
 Sub-folders! this is the approach proposed by cake-dm. With domain separation in mind, the package proposes to split your MVC structure into domains. And sub-domains.
 
+## Requirements
+
+*CakePHP ^3.6*
+
 ## Installation
 
 Use composer to install the domain manager
@@ -47,9 +51,12 @@ Assuming the following minimalistic structure for a flight company.
         - UserProfilesController.php
     - Model
         - AppTable.php
+        - DiscountsTable.php
         - FlightsTable.php
         ...
     - Template
+        - Admin
+        - Discounts
         - Flights
         - Element
             - company_logo.ctp
@@ -67,7 +74,7 @@ Assuming the following minimalistic structure for a flight company.
         - AppView.php
 ```
 ### With cake-dm
-Cake-dm makes it possible to organize your code as follows, with domains marked by arrows:
+Cake-dm makes it possible to organize your code as follows, with domain folders marked by arrows:
 ```
 - src
     - Console
@@ -84,10 +91,13 @@ Cake-dm makes it possible to organize your code as follows, with domains marked 
                     - GeneralComponent.php                   
                 - AppController.php
                 - PagesController.php
-             - Model
-             - Template
-                 - Element
-                     - company_logo.ctp
+            - Model
+            - Template
+                - Element
+                    - company_logo.ctp
+                - Layout
+                    - default.ctp            
+                
             - View
                 - Cell
                 - Helper
@@ -138,11 +148,13 @@ The advantage is that:
  - The structure of your app becomes clearer. 
  - The different domains of your code can be clearly assigned to different developers or teams.
  - Template paths pile up. For example here, the layout of all the templates within the domain Admin is different than the others. This can easily be read from the structure.
+ - If a template, layout or element is not found in a domain, it will be searched in *Domain/App/Template*
+ - The domain layer name *App* should actually be your app's namespace, which is *App* by default in CakePHP. For plugins, it should be *Plugin*, regardless of the plugin's name.
  - Elements and Components are spread through the domains according to their relevance.
 
 Note that:
  - It is possible to split your domains in sub-domains, for example by creating a folder *src/Domain/Staff/Internal* and a folder *src/Domain/Staff/External*. In that case, no MVC folders should be located in the folder *src/Domain/Staff*
- - Plugin structures can be split in the same manner. You should then replace the *App* domain by a *Plugin* domain.
+ - Plugin structures can be split in the same manner. You should then replace the *App* domain layer by a *Plugin* domain layer.
  - Namespaces do not change. It is therefore forbidden to have two controllers with the same name in different domains.
  - Cells, Views and Helpers can be distributed along domain layers too, just as the components. Behaviors too. 
  
