@@ -15,7 +15,7 @@ Sub-folders! this is the approach proposed by cake-dm. With domain separation in
 
 ## Requirements
 
-*CakePHP ^3.6*
+*CakePHP >= 3.5*
 
 ## Installation
 
