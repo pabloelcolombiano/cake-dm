@@ -27,7 +27,7 @@ class DomainView extends View
      */
     public static function init(View $view)
     {
-        $domainViewManager = new static($view->request, $view->response, $view->getEventManager());
+        $domainViewManager = new static($view->getRequest(), $view->getResponse(), $view->getEventManager());
         $domainViewManager->masterClass = $view;
         $domainViewManager->defineType('View');
 
@@ -80,7 +80,7 @@ class DomainView extends View
                 $plugin = $cast[0];
                 $template = $cast[1];
                 $name = $this->rewind(true) . 'plugins' . DS . $plugin . DS . 'src' . DS . "Domain" . DS . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
-            } elseif ($this->masterClass->plugin) {
+            } elseif ($this->masterClass->getPlugin()) {
                 $name = $this->rewind(true) . 'src' . DS . "Domain" . DS . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
             } else {
                 $name = $this->rewind() . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
@@ -101,7 +101,7 @@ class DomainView extends View
         if ($toRoot) {
             $n += 2;
         }
-        if ($this->masterClass->plugin) {
+        if ($this->masterClass->getPlugin()) {
             $n += 2;
         }
 

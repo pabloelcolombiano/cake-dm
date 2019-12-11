@@ -37,7 +37,7 @@ trait DomainManagerTrait
 
         return $this->extractDomainLayerFromFileName(
             $reflector->getFileName(),
-            $this->masterClass->plugin
+            $this->masterClass->getPlugin()
         );
     }
 
@@ -79,7 +79,7 @@ trait DomainManagerTrait
      */
     private function getPluginFolder(): string
     {
-        return ROOT . DS . 'plugins' . DS . $this->masterClass->plugin . DS . 'src' . DS;
+        return ROOT . DS . 'plugins' . DS . $this->masterClass->getPlugin() . DS . 'src' . DS;
     }
 
     /**
