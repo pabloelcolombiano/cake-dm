@@ -291,7 +291,7 @@ Elements of another layered plugin:
 E.g.: plugins/Advertisements/src/Domain/CarRenting/Template/Element/weekly_offers.ctp
 
 Request: /pilots/view/1
-<?= $this->element('Advertisements.weekly_offers@CarRenting', ['user' => $pilot->user]) ?>
+<?= $this->element('Advertisements.weekly_offers@CarRenting', compact('weekly_offers')) ?>
 ```
 
 The notation:
