@@ -252,6 +252,17 @@ class AppView extends View
 }
 ```
 
+### Optional
+
+I recommend editing the following line in your *config/app.php* file under the *'App.paths'* entry to:  
+```
+'templates' => [APP . DS . 'Domain' . DS . 'App' . DS . 'Template' . DS],
+```
+
+If you run into any error messages during the installation, Cake will know the path to the Error template.
+
+This can be ultimately removed, as the DomainController sets up that path for you, as described in the section *Controller* above. 
+
 ## Usage
 
 With the settings done you can call elements of the same layer just as before:
