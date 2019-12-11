@@ -16,7 +16,7 @@ class DomainControllerTest extends BaseTestCase
     public function setUp()
     {
         $controller = $this->createMock(Controller::class);
-        $controller->name = 'Test';
+        $controller->method('getName')->willReturn('Test');
 
         $this->domainController = DomainController::init($controller);
     }
