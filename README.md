@@ -298,7 +298,7 @@ The notation:
 ```
 <?= $this->element('../Users', compact('users)) ?>
 ```
-is no longer supported, or at least it can react impredictably. Instead, organize you structure in a manner, where all reusable templates are located in a domain layers's Element folder. All use the magical *@* notation to call elements from other layers.
+is no longer supported, or at least it can react impredictably. Instead, organize you structure in a manner, where all reusable templates are located in a domain layers's Element folder. And use the magical *@* notation to call elements across domain layers.
 
 
 ## Credits
