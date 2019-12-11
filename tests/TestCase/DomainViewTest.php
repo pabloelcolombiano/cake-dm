@@ -16,7 +16,7 @@ class DomainViewTest extends BaseTestCase
 
     public function setUp()
     {
-        $view = $this->createMock(View::class);
+        $view = new View();
         $this->domainView = DomainView::init($view);
         Configure::write('DomainManager.controller_domain', 'Domain/App');
     }

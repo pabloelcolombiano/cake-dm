@@ -37,7 +37,7 @@ trait DomainManagerTrait
 
         return $this->extractDomainLayerFromFileName(
             $reflector->getFileName(),
-            $this->masterClass->getPlugin()
+            $this->masterClass->plugin
         );
     }
 
@@ -49,7 +49,7 @@ trait DomainManagerTrait
      * @param string|null $plugin
      * @return mixed|string
      */
-    public function extractDomainLayerFromFileName(string $fileName, string $plugin = null)
+    public function extractDomainLayerFromFileName(string $fileName, string $plugin = null) : string
     {
         $srcPath = $plugin ? $this->getPluginFolder() : APP;
 
@@ -79,7 +79,7 @@ trait DomainManagerTrait
      */
     private function getPluginFolder(): string
     {
-        return ROOT . DS . 'plugins' . DS . $this->masterClass->getPlugin() . DS . 'src' . DS;
+        return ROOT . DS . 'plugins' . DS . $this->masterClass->plugin . DS . 'src' . DS;
     }
 
     /**
