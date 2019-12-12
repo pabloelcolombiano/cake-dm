@@ -1,5 +1,5 @@
 # cake-dm
-A domain manager for CakePHP applications.
+A layer manager for CakePHP applications.
 
 ## Introduction
 
