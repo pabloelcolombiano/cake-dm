@@ -96,8 +96,7 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
                 - Element
                     - company_logo.ctp
                 - Layout
-                    - default.ctp            
-                
+                    - default.ctp                            
             - View
                 - Cell
                 - Helper
