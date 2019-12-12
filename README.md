@@ -117,8 +117,6 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
                 - MachinesController.php
                 - SeatsController.php
             - Model
-                - FlightsTable.php
-                ...
             - Template
                 - Element
                     - Flight
