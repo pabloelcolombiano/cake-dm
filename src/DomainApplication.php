@@ -35,6 +35,7 @@ class DomainApplication
     /**
      * @param string $namespace
      * @param string $directory
+     * @return $this
      * @throws \ReflectionException
      */
     public function trackDuplicatedClassesInNamespace(string $namespace, string $directory) : self
@@ -64,6 +65,8 @@ class DomainApplication
             $unassignedPHPFiles = implode(', ', $unassignedPHPFiles);
             $this->throwFatalErrorException("The file(s) $unassignedPHPFiles in $directory point to a class with the same name as another class in the same namespace.");
         }
+
+        return $this;
     }
 
     /**
