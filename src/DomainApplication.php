@@ -33,6 +33,11 @@ class DomainApplication
     }
 
     /**
+     * Search for all the classes in a namespace, and map them to the
+     * PHP files of the given directory. If some PHP files remain unassigned,
+     * it means that you have two classes with the same name in the same
+     * namespace. This can be triggered in a test, for example ApplicationTest.php
+     * in order to make sure that your classes in App are coherent.
      * @param string $namespace
      * @param string $directory
      * @return $this
@@ -70,6 +75,8 @@ class DomainApplication
     }
 
     /**
+     * Search for PHP files with the same name inside a given directory.
+     * It is a cheap security, not recommended.
      * @param string $directory
      * @return $this
      */
@@ -88,8 +95,10 @@ class DomainApplication
     }
 
     /**
+     * Get all PHP files in a directory
      * @param string $dir
      * @param array $results
+     * @param bool $withFullPath
      * @return array
      */
     private function getDirPHPContent(string $dir, &$results = [], $withFullPath = false) : array
@@ -135,6 +144,7 @@ class DomainApplication
     }
 
     /**
+     * Find duplicates in an array
      * @param array $array
      * @return array
      */
