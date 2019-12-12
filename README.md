@@ -3,7 +3,7 @@ A domain manager for CakePHP applications.
 
 ## Introduction
 
-As your CakePHP grows, the respective size of your Controller, Model and Template folders increases.
+As your CakePHP grows, the respective sizes of your Controller, Model and Template folders increase.
 
 Your *src/Template/Element* folder has probably become a mess too, if you haven't split it in several sub-folders.
 
@@ -35,7 +35,7 @@ Assuming the following minimalistic structure for a flight company.
     - Controller
         - Component
             - GeneralComponent.php
-            - UsersRelatedComponent.php       
+            - UserRelatedComponent.php       
         - AdminController.php
         - AppController.php
         - DiscountsController.php
@@ -50,9 +50,11 @@ Assuming the following minimalistic structure for a flight company.
         - UsersController.php
         - UserProfilesController.php
     - Model
-        - AppTable.php
-        - DiscountsTable.php
-        - FlightsTable.php
+        - Table
+            - AppTable.php
+            - DiscountsTable.php
+            - FlightsTable.php
+        - Entity
         ...
     - Template
         - Admin
@@ -96,8 +98,7 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
                 - Element
                     - company_logo.ctp
                 - Layout
-                    - default.ctp            
-                
+                    - default.ctp                            
             - View
                 - Cell
                 - Helper
@@ -109,17 +110,13 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
                 - DiscountsController.php
                 - TicketsController.php
             - Model
-                ...
-            - Template
-                ...
+            - Template                
         -> Logistic
             - Controller
                 - FlightsController.php
                 - MachinesController.php
                 - SeatsController.php
             - Model
-                - FlightsTable.php
-                ...
             - Template
                 - Element
                     - Flight
@@ -127,22 +124,23 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
                 - Flights
                 - Machines
                 - Seats
-        -> Staff
-              ...
+        -> Staff          
         -> User
             - Controller
                 - Component             
-                    - UsersRelatedComponent.php
+                    - UserRelatedComponent.php
                 - UsersController.php
                 - UserProfilesController.php
             - Model
-                - UsersTable.php
-                - UsersProfilesTable.php
+                - Table
+                    - UsersTable.php
+                    - UserProfilesTable.php
+                - Entity
             - Template
                 - Element
                     - user_avatar.ctp
                 - Users
-                - UserProfile  
+                - UserProfiles
 ```
 The advantage is that:
  - The structure of your app becomes clearer. 
@@ -186,7 +184,7 @@ Run
 ``` composer dump-autoload ```
 after any structural change.
 
-You may also have to refresh your cached routes as well in *tmp/cache*.
+You may have to refresh your cached routes as well in *tmp/cache*.
 
 The same applies when introducing domain layers in your plugins.
 
@@ -280,7 +278,7 @@ Request: /pilots/view/1
 <?= $this->element('user_avatar@User', ['user' => $pilot->user]) ?>
 ```
 
-Elements of another sub-layer, e.g. *Domain/Users/Settings*:
+Elements of another sub-layer, e.g. *Domain/User/Settings*:
 ```
 Request: /pilots/view/1
 <?= $this->element('user_avatar@User/Settings', ['user' => $pilot->user]) ?>
