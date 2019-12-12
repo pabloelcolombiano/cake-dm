@@ -185,7 +185,7 @@ Run
 ``` composer dump-autoload ```
 after any structural change.
 
-You may also have to refresh your cached routes as well in *tmp/cache*.
+You may have to refresh your cached routes as well in *tmp/cache*.
 
 The same applies when introducing domain layers in your plugins.
 
@@ -279,7 +279,7 @@ Request: /pilots/view/1
 <?= $this->element('user_avatar@User', ['user' => $pilot->user]) ?>
 ```
 
-Elements of another sub-layer, e.g. *Domain/Users/Settings*:
+Elements of another sub-layer, e.g. *Domain/User/Settings*:
 ```
 Request: /pilots/view/1
 <?= $this->element('user_avatar@User/Settings', ['user' => $pilot->user]) ?>
