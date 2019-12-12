@@ -33,7 +33,7 @@ Assuming the following minimalistic structure for a flight company.
 - src
     - Console
     - Controller
-        - Components
+        - Component
             - GeneralComponent.php
             - UsersRelatedComponent.php       
         - AdminController.php
@@ -87,7 +87,7 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
                     - default.ctp 
         -> App
             - Controller
-                - Components
+                - Component
                     - GeneralComponent.php                   
                 - AppController.php
                 - PagesController.php
@@ -131,7 +131,7 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
               ...
         -> User
             - Controller
-                - Components                
+                - Component             
                     - UsersRelatedComponent.php
                 - UsersController.php
                 - UserProfilesController.php
@@ -298,7 +298,7 @@ The notation:
 ```
 <?= $this->element('../Users', compact('users)) ?>
 ```
-is no longer supported, or at least it can react impredictably. Instead, organize you structure in a manner, where all reusable templates are located in a domain layers's Element folder. And use the magical *@* notation to call elements across domain layers.
+is no longer supported, or at least it can react impredictably. Instead, organize you structure in a manner, where all reusable templates are located in a domain layer's *Element* folder. And use the magical *@* notation to call elements across domain layers.
 
 
 ## Credits
