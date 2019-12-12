@@ -253,7 +253,7 @@ Having multiple directories under one same namespace (see [Composer](#composer))
 
 Neither PHP nor Composer will throw any error or warning if this happens.
 
-In order to avoid this, the following test can be added to your *ApplicationTest.php* file, to ensure that all your classes are correctly reached by composer.
+In order to avoid this, the following test can be added to your *ApplicationTest.php* file, to ensure that all your classes are correctly reached by Composer.
 ```
 ...
 
@@ -285,7 +285,7 @@ use CakeDomainManager\DomainApplication;
 ...
 ``` 
 
-Should you absolutely need to have two classes names the same in the *src* folder, there is nothing the present version of the package can do.
+Should you absolutely need to have two classes named identically in the *src* folder, there is nothing the present version of the package can do.
 
 ### Optional 2
 
