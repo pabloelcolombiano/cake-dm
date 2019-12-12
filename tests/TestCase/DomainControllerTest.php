@@ -23,7 +23,7 @@ class DomainControllerTest extends BaseTestCase
 
     public function testExtractLayerFromFileNameCorrect()
     {
-        $expectedLayer = 'Domain' . DS . 'TestDomain';
+        $expectedLayer = 'TestDomain';
         $fileName = APP . $expectedLayer . DS . 'Controller' . DS . 'TestController.php';
         $layer = $this->domainController->extractDomainLayerFromFileName($fileName);
 
@@ -32,7 +32,7 @@ class DomainControllerTest extends BaseTestCase
 
     public function testExtractLayerFromFileNameCorrect2()
     {
-        $expectedLayer = 'Domain' . DS . 'TestDomain' . DS . 'TestSubDomain';
+        $expectedLayer = 'TestDomain' . DS . 'TestSubDomain';
         $fileName = APP . $expectedLayer . DS . 'Controller' . DS . 'TestController.php';
         $layer = $this->domainController->extractDomainLayerFromFileName($fileName);
 
@@ -41,7 +41,7 @@ class DomainControllerTest extends BaseTestCase
 
     public function testExtractLayerFromFileNameIncorrect()
     {
-        $expectedLayer = 'Domain' . DS . 'TestDomain';
+        $expectedLayer = 'TestDomain';
         $fileName = APP . $expectedLayer . DS . 'Controlle' . DS . 'TestController.php';
         $layer = $this->domainController->extractDomainLayerFromFileName($fileName);
 

@@ -43,15 +43,15 @@ class DomainView extends View
      *
      * $this->element('logged_in_user@User'):
      *      will load the element logged_in_user.ctp
-     *      located in src/Domain/User/Template/Element/logged_in_user
+     *      located in src/User/Template/Element/logged_in_user
      *
      * $this->element('seat_description@Planes/Seats'):
      *      will load the element seat_description.ctp
-     *      located in src/Domain/Planes/Seats/Template/Element/seat_description
+     *      located in src/Planes/Seats/Template/Element/seat_description
      *
      * $this->element('Bookings.invoice_description@Invoices'):
      *      will load the element invoice_description.ctp
-     *      located in plugins/Bookings/src/Domain/Invoices/Template/Element/invoice_description
+     *      located in plugins/Bookings/src/Invoices/Template/Element/invoice_description
      *
      * @param string $name
      * @param bool $pluginCheck
@@ -79,14 +79,13 @@ class DomainView extends View
             if (count($cast) === 2) {
                 $plugin = $cast[0];
                 $template = $cast[1];
-                $name = $this->rewind(true) . 'plugins' . DS . $plugin . DS . 'src' . DS . "Domain" . DS . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
+                $name = $this->rewind(true) . 'plugins' . DS . $plugin . DS . 'src' . DS . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
             } elseif ($this->masterClass->getPlugin()) {
-                $name = $this->rewind(true) . 'src' . DS . "Domain" . DS . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
+                $name = $this->rewind(true) . 'src' . DS . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
             } else {
                 $name = $this->rewind() . $domain . DS . 'Template' . DS . 'Element' . DS . $template;
             }
         }
-
         return $name;
     }
 
@@ -97,12 +96,14 @@ class DomainView extends View
      */
     private function rewind(bool $toRoot = false)
     {
-        $n = count(explode('/', $this->getControllerDomainLayer())) + 1;
-        if ($toRoot) {
-            $n += 2;
-        }
+        // Rewind to APP
+        $n = 2 + count(explode('/', $this->getControllerDomainLayer()));
+
+        // Rewind to ROOT coming from a plugin
         if ($this->masterClass->getPlugin()) {
-            $n += 2;
+            $n += 3;
+        } elseif ($toRoot) {
+            $n += 1;
         }
 
         $res = '';

@@ -58,7 +58,7 @@ class DomainController
 
         $templatePaths = Configure::read('App.paths.templates', []);
 
-        $baseAppPath = 'Domain' . DS . Configure::read('App.namespace', 'App');
+        $baseAppPath = Configure::read('App.namespace', 'App');
 
         array_unshift($templatePaths, APP . $baseAppPath . DS . 'Template' . DS);
 
@@ -67,7 +67,7 @@ class DomainController
         }
 
         if ($this->masterClass->getPlugin()) {
-            array_unshift($templatePaths, $this->getPluginFolder() . 'Domain' . DS . 'Plugin' . DS . 'Template' . DS);
+            array_unshift($templatePaths, $this->getPluginFolder() . 'Plugin' . DS . 'Template' . DS);
             if (!empty($layer)) {
                 array_unshift($templatePaths, $this->getPluginFolder() . $layer . DS . 'Template' . DS);
             }

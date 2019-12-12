@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d7834710bea544d29d4c7f94553bccc",
+    "content-hash": "5545e65a86a5185f0ac31638569d45a5",
     "packages": [
         {
             "name": "aura/intl",
@@ -196,6 +196,48 @@
                 "time"
             ],
             "time": "2019-11-30T02:33:19+00:00"
+        },
+        {
+            "name": "haydenpierce/class-finder",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/hpierce1102/ClassFinder.git",
+                "reference": "a813ebb4444789ab8ec36692e24f26991014fcdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=a813ebb4444789ab8ec36692e24f26991014fcdf",
+                "reference": "a813ebb4444789ab8ec36692e24f26991014fcdf",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "4.8.36"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HaydenPierce\\ClassFinder\\": "src/",
+                    "HaydenPierce\\ClassFinder\\UnitTest\\": "test/unit"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hayden Pierce",
+                    "email": "hayden@haydenpierce.com"
+                }
+            ],
+            "description": "A library that can provide of a list of classes in a given namespace",
+            "time": "2019-09-15T14:33:14+00:00"
         },
         {
             "name": "psr/http-message",
