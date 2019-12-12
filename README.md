@@ -3,7 +3,7 @@ A domain manager for CakePHP applications.
 
 ## Introduction
 
-As your CakePHP grows, the respective size of your Controller, Model and Template folders increases.
+As your CakePHP grows, the respective sizes of your Controller, Model and Template folders increase.
 
 Your *src/Template/Element* folder has probably become a mess too, if you haven't split it in several sub-folders.
 
