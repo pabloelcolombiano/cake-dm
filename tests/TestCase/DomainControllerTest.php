@@ -45,6 +45,6 @@ class DomainControllerTest extends BaseTestCase
         $fileName = APP . $expectedLayer . DS . 'Controlle' . DS . 'TestController.php';
         $layer = $this->domainController->extractDomainLayerFromFileName($fileName);
 
-        $this->assertEquals(null, $layer);
+        $this->assertEquals(true, $layer === '');
     }
 }
