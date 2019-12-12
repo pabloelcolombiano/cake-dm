@@ -35,7 +35,7 @@ Assuming the following minimalistic structure for a flight company.
     - Controller
         - Component
             - GeneralComponent.php
-            - UsersRelatedComponent.php       
+            - UserRelatedComponent.php       
         - AdminController.php
         - AppController.php
         - DiscountsController.php
@@ -50,9 +50,11 @@ Assuming the following minimalistic structure for a flight company.
         - UsersController.php
         - UserProfilesController.php
     - Model
-        - AppTable.php
-        - DiscountsTable.php
-        - FlightsTable.php
+        - Table
+            - AppTable.php
+            - DiscountsTable.php
+            - FlightsTable.php
+        - Entity
         ...
     - Template
         - Admin
@@ -108,9 +110,7 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
                 - DiscountsController.php
                 - TicketsController.php
             - Model
-                ...
-            - Template
-                ...
+            - Template                
         -> Logistic
             - Controller
                 - FlightsController.php
@@ -126,22 +126,23 @@ Cake-dm makes it possible to organize your code as follows, with domain folders 
                 - Flights
                 - Machines
                 - Seats
-        -> Staff
-              ...
+        -> Staff          
         -> User
             - Controller
                 - Component             
-                    - UsersRelatedComponent.php
+                    - UserRelatedComponent.php
                 - UsersController.php
                 - UserProfilesController.php
             - Model
-                - UsersTable.php
-                - UsersProfilesTable.php
+                - Table
+                    - UsersTable.php
+                    - UserProfilesTable.php
+                - Entity
             - Template
                 - Element
                     - user_avatar.ctp
                 - Users
-                - UserProfile  
+                - UserProfiles
 ```
 The advantage is that:
  - The structure of your app becomes clearer. 
