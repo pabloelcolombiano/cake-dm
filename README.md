@@ -77,7 +77,7 @@ Assuming the following minimalistic structure for a flight company.
     Application.php
 ```
 ### With cake-dm
-Cake-dm makes it possible to organize your code as follows, with domain folders marked by arrows:
+Cake-dm makes it possible to organize your code as follows:
 ```
 - src     
     - Admin
