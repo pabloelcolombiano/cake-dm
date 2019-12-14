@@ -148,11 +148,11 @@ The advantages are that:
  - The different domains of your application can be clearly assigned to different developers or teams.
  - Template paths pile up. For example here, the layout of all the templates within the layer Admin is different than the others. This can easily be read from the structure.
  - If a template, layout or element is not found in a layer, it will be searched in *App/Template* per default.
- - The domain layer name *App* should actually be your app's namespace, which is *App* by default in CakePHP. For plugins, it should be *Plugin*, regardless of the plugin's name.
  - Elements and Components can be spread throughout the layers according to their relevance.
 
 Note that:
  - It is possible to split your layers in sub-layers, for example by creating a folder *src/Staff/Internal* and a folder *src/Staff/External*. In that case, no MVC folders should be located in the folder *src/Staff*.
+ - The domain layer name *App* should actually be your app's namespace, which is *App* by default in CakePHP. For plugins, it should be *Plugin*, regardless of the plugin's name.
  - Plugin structures can be split in the same manner. You should then replace the *App* domain layer by a *Plugin* domain layer.
  - Namespaces do not change. It is therefore forbidden to have two classes with the same name in different layers. More about that below.
  - Cells, Views, Behaviors and Helpers can be distributed along domain layers too, just as the Components.
