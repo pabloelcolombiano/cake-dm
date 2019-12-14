@@ -54,6 +54,7 @@ Assuming the following minimalistic structure for a flight company.
             AppTable.php
             DiscountsTable.php
             FlightsTable.php
+            ...
         - Entity
         ...
     - Template
